@@ -342,7 +342,7 @@
 	// We do not use phpFlickr $f->auth ( $perms ) because it only works for web apps
 	function auth_desktop ( $f, $log, $perms = "read" ) {
 		$token_filename = $script_directory . DIRECTORY_SEPARATOR . "flickrSyncr.token";
-	echo PHP_EOL . token_filename . PHP_EOL;
+	echo PHP_EOL . $token_filename . PHP_EOL;
 		if ( file_exists ( $token_filename ) ) {
 			// Read the content of the token file and put it in a variable
 			$log->logDebug ( "Reading auth token from file" );

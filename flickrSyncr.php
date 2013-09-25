@@ -106,6 +106,7 @@
 	$command_example		 = "Example : php " . $script_basename . " --upload --path=/path/to/my/photo --generate-tags";
 	$command_arguments		 = array (
 		"help"				=>	"Print Help ( this message ) and exit",
+		"auth"				=>	"Authenticate only the app at www.flickr.com"
 		"upload"			=>	"Specify the folder to upload ( default is current directory )",
 		"download"			=>	"Specify the folder where to download the photos from flickr ( default is current directory )",
 		"path"				=>	"Specify the folder to use ( default is current directory )",
@@ -157,11 +158,15 @@
 	$f = new phpFlickr ( $api_key, $api_secret ) ;
 	
 	$log->logInfo ( "Checking Flickr authentication" );
-	$credentials = auth_desktop ( $f, $log, $permissions );
+	$credentials = auth_desktop ( $f, $log, "delete" );
 	if ( ! $credentials ) {
 		$log->logError ( "Error with authentication process" );
 	} else {
 		$log->logInfo ( "Connected as " . $credentials['user']['fullname'] . " to the account '" . $credentials['user']['username'] . "' with permission: '" . $credentials['perms'] . "'" );
+	}
+	
+	if ( array_key_exists ( "auth", $arguments ) ) {
+		exit ( );
 	}
 
 	// Cleanup the path

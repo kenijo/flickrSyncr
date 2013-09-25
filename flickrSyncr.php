@@ -340,7 +340,7 @@
 	
 	// We do not use phpFlickr $f->auth ( $perms ) because it only works for web apps
 	function auth_desktop ( $f, $log, $perms = "read" ) {
-		$token_filename = "flickr.token";
+		$token_filename = $current_directory . "flickr.token";
 		if ( file_exists ( $token_filename ) ) {
 			// Read the content of the token file and put it in a variable
 			$log->logDebug ( "Reading auth token from file" );
@@ -369,8 +369,7 @@
 			$line = fgets ( $handle );
 			echo "Thank you for authenticating the app" . PHP_EOL;
 			
-			// The app makes a background call to flickr.auth.getToken
-			
+			// The app makes a background call to flickr.auth.getToken			
 			$log->logDebug ( "Retrieving credentials from Flickr" );
 			$credentials = $f->auth_getToken ( $frob );
 			if ( $credentials == false ) {

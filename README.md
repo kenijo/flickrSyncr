@@ -19,3 +19,9 @@ Example : php flickrSyncr.php --upload --path=/path/to/my/photo --generate-tags
     --ignore-images   Ignore image files
     --ignore-videos   Ignore video files when download or uploading
     --generate-tags   Generate tags based on the name of the photoset when uploading
+
+
+This script is using the following external PHP classes
+
+    - phpFlickr : http://www.phpflickr.com
+    - KLogger   : http://codefury.net

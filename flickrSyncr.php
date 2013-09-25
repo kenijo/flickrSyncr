@@ -36,13 +36,13 @@
 	$script_version = "1.0";
 
 	// Get current script directory
-	$current_directory = realpath ( dirname ( __FILE__ ) );
+	$script_directory = realpath ( dirname ( __FILE__ ) );
 	// Get the script name
 	$path_parts = pathinfo ( __FILE__ );
 	$script_basename = $path_parts['basename'];
 
 	// Log file name
-	$log_file = $current_directory . DIRECTORY_SEPARATOR . "log";
+	$log_file = $script_directory . DIRECTORY_SEPARATOR . "log";
 	/**
 	 *	Logging level
 	 *	When you choose a level, all the messages from this level and below will be displayed
@@ -341,8 +341,8 @@
 	
 	// We do not use phpFlickr $f->auth ( $perms ) because it only works for web apps
 	function auth_desktop ( $f, $log, $perms = "read" ) {
-		$token_filename = $current_directory . DIRECTORY_SEPARATOR . "flickrSyncr.token";
-
+		$token_filename = $script_directory . DIRECTORY_SEPARATOR . "flickrSyncr.token";
+	echo PHP_EOL . token_filename . PHP_EOL;
 		if ( file_exists ( $token_filename ) ) {
 			// Read the content of the token file and put it in a variable
 			$log->logDebug ( "Reading auth token from file" );

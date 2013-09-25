@@ -359,6 +359,7 @@
 			// The user clicks on the link and launches a browser window with the URL
 			// The user then will authorize the app
 			$log->logDebug ( "Authorizing app on Flickr" );
+			echo PHP_EOL;
 			echo "Please authorize this application with Flickr at " . PHP_EOL;
 			$api_sig = md5 ( $f->secret . "api_key" . $f->api_key . "frob" . $frob . "perms" . $perms ) ;
 			echo "http://www.flickr.com/services/auth/?api_key=" . $f->api_key . "&frob=" . $frob . "&perms=" . $perms . "&api_sig=". $api_sig . PHP_EOL;

@@ -341,7 +341,7 @@
 	
 	// We do not use phpFlickr $f->auth ( $perms ) because it only works for web apps
 	function auth_desktop ( $f, $log, $perms = "read" ) {
-		$token_filename = $current_directory . DIRECTORY_SEPARATOR . $script_basename . ".token";
+		$token_filename = $current_directory . DIRECTORY_SEPARATOR . "flickrSyncr.token";
 
 		if ( file_exists ( $token_filename ) ) {
 			// Read the content of the token file and put it in a variable
@@ -363,6 +363,7 @@
 			$log->logDebug ( "Authorizing app on Flickr" );
 			echo PHP_EOL;
 			echo "Please authorize this application with Flickr at " . PHP_EOL;
+			echo PHP_EOL;
 			$api_sig = md5 ( $f->secret . "api_key" . $f->api_key . "frob" . $frob . "perms" . $perms ) ;
 			echo "http://www.flickr.com/services/auth/?api_key=" . $f->api_key . "&frob=" . $frob . "&perms=" . $perms . "&api_sig=". $api_sig . PHP_EOL;
 			echo PHP_EOL;

@@ -395,7 +395,7 @@
 				auth_desktop ( $f, $log, $perms );
 			}
 			$f->die_on_error = $tmp;
-			return $credentials['perms'];
+			return $credentials;
 		}
 	}
 	

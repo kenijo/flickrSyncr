@@ -363,9 +363,11 @@
 			echo "Please authorize this application with Flickr at " . PHP_EOL;
 			$api_sig = md5 ( $f->secret . "api_key" . $f->api_key . "frob" . $frob . "perms" . $perms ) ;
 			echo "http://www.flickr.com/services/auth/?api_key=" . $f->api_key . "&frob=" . $frob . "&perms=" . $perms . "&api_sig=". $api_sig . PHP_EOL;
-			echo "Press the enter key once you have authorized the application." . PHP_EOL;
+			echo PHP_EOL;
+			echo "Press the enter key once you have authorized the application" . PHP_EOL;
 			$handle = fopen ( "php://stdin", "r" );
 			$line = fgets ( $handle );
+			echo "Thank you for authenticating the app" . PHP_EOL;
 			
 			// The app makes a background call to flickr.auth.getToken
 			

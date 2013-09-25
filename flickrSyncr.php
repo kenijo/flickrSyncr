@@ -28,7 +28,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Flickr Syncr Script Variables
 
-	Require_once ( "flickrSyncrAPI.php" );
+	Require_once ( "flickrSyncr.API.php" );
 
 	// Script Name
 	$script_name = "Flickr Syncr";
@@ -37,6 +37,9 @@
 
 	// Get current script directory
 	$current_directory = realpath ( dirname ( __FILE__ ) );
+	// Get the script name
+	$path_parts = pathinfo ( __FILE__ );
+	$script_basename = $path_parts['basename'];
 
 	// Log file name
 	$log_file = $current_directory . DIRECTORY_SEPARATOR . "log";
@@ -97,8 +100,6 @@
 	$log->logInfo ( "----------------------------------------------------------------------------------------------------" );
 	
 	// List all the allowed arguments and their help message
-	$path_parts 			 = pathinfo ( __FILE__ );
-	$script_basename		 = $path_parts['basename'];
 	$command_name			 = $script_name . " " . $script_version . PHP_EOL . "================";
 	$command_description	 = "This PHP script allows you to sync a local folder with your Flickr account in command line" . PHP_EOL;
 	$command_description	.= "Through batch upload / download of photos and video on / from Flickr";
@@ -340,7 +341,7 @@
 	
 	// We do not use phpFlickr $f->auth ( $perms ) because it only works for web apps
 	function auth_desktop ( $f, $log, $perms = "read" ) {
-		$token_filename = $current_directory . DIRECTORY_SEPARATOR . "flickr.token";
+		$token_filename = $current_directory . DIRECTORY_SEPARATOR . $script_basename . ".token";
 
 		if ( file_exists ( $token_filename ) ) {
 			// Read the content of the token file and put it in a variable

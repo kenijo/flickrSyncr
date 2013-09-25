@@ -28,13 +28,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Flickr Syncr Script Variables
 
-	// Flickr API Web App
-	$api_key = "4ebf0685518639883a715ecf526b06af";
-	$api_secret = "b8f8d1782d3e47c9";
-
-	// Flickr API Desktop App
-	//$api_key = "d33dd3a84dacc74b43aa050fa7a8a9c3";
-	//$api_secret = "bc3821a2b3b2b404";
+	Require_once ( "flickrSyncrAPI.php" );
 
 	// Script Name
 	$script_name = "Flickr Syncr";
@@ -398,5 +392,3 @@
 	}
 	
 ?>
-
-

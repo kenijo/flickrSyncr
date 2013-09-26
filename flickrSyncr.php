@@ -14,6 +14,7 @@
 	 * Example: php flickrSyncr.php --upload --path=/path/to/my/photo --generate-tags
 	 * 
   	 * --help            Print Help ( this message ) and exit
+  	 * --auth			 Authenticate only the app at www.flickr.com
   	 * --upload          Specify the folder to upload ( default is current directory )
   	 * --download        Specify the folder where to download the photos from flickr ( default is current directory )
   	 * --path            Specify the folder to use ( default is current directory )

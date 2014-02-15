@@ -6,7 +6,8 @@ Install
 
 To install, download ad decompress the the archive in a folder.
 
-Edit flickrSyncr.API.php and add your Flickr API key and secret
+Rename flickrSyncr.conf.sample.php to flickrsyncr.conf.php
+and add your Flickr API key and secret
 
 Execute from the command line:
 
@@ -49,7 +50,7 @@ Example : php flickrSyncr.php --upload --path=/path/to/my/photo --generate-tags
     --generate-tags   Generate tags based on the name of the photoset when uploading
 
 
-This script is using the following external PHP classes
+This script is using a modified version of the following external PHP classes
 
     - phpFlickr : http://www.phpflickr.com
     - KLogger   : http://codefury.net

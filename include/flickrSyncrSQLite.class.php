@@ -1,4 +1,4 @@
- <?php if ( ! defined ( 'DIRNAME' ) ) exit ( 'No direct script access allowed' );
+ <?php
     /*
     |--------------------------------------------------------------------------
     |  Flickr Syncr
@@ -11,16 +11,16 @@
 
     class flickrSyncrSQLite extends SQLite3
     {
-        private $f;
+        private $args;
         private $cfg;
-        private $arguments;
+        private $f;
         private $log;
 
-        function __construct ( $f, $cfg, $arguments, $log )
+        function __construct ( $args, $cfg, $f, $log )
         {
-            $this->f = $f;
+            $this->args = $args;
             $this->cfg = $cfg;
-            $this->arguments = $arguments;
+            $this->f = $f;
             $this->log = $log;
 
             // Connect to SQlite DB
@@ -268,7 +268,7 @@
 
                     // Link SET to COLLECTION
                     if ( $lastCollectionFlickrId != NULL)
-                    { 
+                    {
                         $query = $this->prepare ( 'UPDATE sets SET parent_collection_flickr_id = :parent_collection_flickr_id WHERE flickr_id = :flickr_id' );
                         $query->bindValue ( ':parent_collection_flickr_id', $lastCollectionFlickrId );
                         $query->bindValue ( ':flickr_id', $setFlickrId );
@@ -329,7 +329,7 @@
 
         function uploadFileToFlickr ( $file )
         {
-            $path = $this->arguments['path'] . $file['dirname'] . DIR_SEPARATOR . $file['filename'] . '.' . $file['extension'];
+            $path = $this->args['upload'] . $file['dirname'] . DIR_SEPARATOR . $file['filename'] . '.' . $file['extension'];
 
             // Upload FILE
             $result = $this->f->sync_upload ( $path, $file['title'], $file['description'], $file['tags'], $this->cfg['is_public'], $this->cfg['is_friend'], $this->cfg['is_family'] );
@@ -451,11 +451,11 @@
             if ( $result != false )
             {
                 if ( isset ( $result['collections']['collection'] ) )
-                { 
+                {
                     foreach ( $result['collections']['collection'] as $collection_key => $collection_value )
                     {
                         if ( isset ( $collection_value['set'] ) )
-                        {                   
+                        {
                             foreach ( $collection_value['set'] as $set_key => $set_value )
                             {
                                 $setList .= $set_value['id'] . ',';
@@ -464,7 +464,7 @@
                     }
                 }
             }
-            
+
             $setFlickrId = $setList . $setFlickrId;
 
             $result = $this->f->collections_editSets ( $collectionFlickrId, $setFlickrId );

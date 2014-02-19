@@ -1,4 +1,4 @@
-<?php if ( ! defined ( 'DIRNAME' ) ) exit ( 'No direct script access allowed' );
+<?php
 /**
  * Finally, a light, permissions-checking logging class.
  *
@@ -360,7 +360,6 @@ class KLogger
             }
 
             $this->writeFreeFormLine($line . PHP_EOL);
-            echo $line . PHP_EOL;
         }
     }
 
@@ -377,6 +376,7 @@ class KLogger
             if (fwrite($this->_fileHandle, $line) === false) {
                 $this->_messageQueue[] = $this->_messages['writefail'];
             }
+            echo $line;
         }
     }
 

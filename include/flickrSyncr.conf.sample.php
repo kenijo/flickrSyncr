@@ -1,4 +1,4 @@
-<?php if ( ! defined ( 'DIRNAME' ) ) exit ( 'No direct script access allowed' );
+<?php
     /*
     |--------------------------------------------------------------------------
     |  Flickr Syncr
@@ -86,17 +86,16 @@
     $cfg['cmd_usage']           = 'Usage   : php ' . BASENAME . ' [arguments]';
     $cfg['cmd_example']         = 'Example : php ' . BASENAME . ' --upload --path=/path/to/my/photo --generate-tags';
     $cfg['cmd_arguments']       = array (
-        'help'              =>  'Print Help ( this message ) and exit',
         'auth'              =>  'Authenticate the app at www.flickr.com',
-        'upload'            =>  'Specify the folder to upload ( default is current directory )',
-        'generate-tags'     =>  'Generate tags based on the name of the photoset when uploading',
-        'download'          =>  'Specify the folder where to download the photos from flickr ( default is current directory )',
-        'path'              =>  'Specify the folder to use ( default is current directory )',
-        'ignore-images'     =>  'Ignore image files',
-        'ignore-videos'     =>  'Ignore video files when download or uploading',
         'cleanup-local'     =>  'Delete local files that are not on Flickr',
         'cleanup-flickr'    =>  'Delete Flickr files that are not on the local disk',
+        'download'          =>  'Specify the folder where to download the photos from flickr ( default is current directory )',
         'flush-flickr'      =>  'Flush all files from Flickr'
+        'generate-tags'     =>  'Generate tags based on the name of the photoset when uploading',
+        'help'              =>  'Print Help ( this message ) and exit',
+        'ignore-images'     =>  'Ignore image files',
+        'ignore-videos'     =>  'Ignore video files when download or uploading',
+        'upload'            =>  'Specify the folder to upload ( default is current directory )',
     );
 
     /*
@@ -137,4 +136,4 @@
     */
     $cfg['dbg_mode']        = false ;
     $cfg['dbg_path']        = '/volume1/web/Photos/';
-    $cfg['dbg_arguments']   = '--upload --path=' . $cfg['dbg_path'] . ' --generate-tags';
+    $cfg['dbg_arguments']   = '--upload=' . $cfg['dbg_path'] . ' --generate-tags';

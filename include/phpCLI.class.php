@@ -1,4 +1,4 @@
-<?php if ( ! defined ( 'DIRNAME' ) ) exit ( 'No direct script access allowed' );
+<?php
     /*
     |--------------------------------------------------------------------------
     |  phpCLIClass
@@ -25,14 +25,14 @@
     {
         var $allowed_arguments = array ( );
 
-        function phpCLI ( $command_arguments = NULL )
+        function __construct ( $command_arguments = NULL )
         {
             // Streamline the arguments
             if ( $command_arguments != NULL ) {
-                foreach ( $command_arguments['cmd_arguments'] as $argument => $description )
+                foreach ( $command_arguments['cmd_arguments'] as $arg => $description )
                 {
-                    $argument = preg_replace ( '/[^a-z0-9-]+/', '', $argument );
-                    $this->allowed_arguments[$argument] = $description;
+                    $arg = preg_replace ( '/[^a-z0-9-]+/', '', $arg );
+                    $this->allowed_arguments[$arg] = $description;
                 }
             }
         }
@@ -71,28 +71,28 @@
             }
 
             $max_arg_len = 0;
-            foreach ( $cfg['cmd_arguments'] as $argument => $description )
+            foreach ( $cfg['cmd_arguments'] as $arg => $description )
             {
-                $tmp_len = strlen ( $argument );
+                $tmp_len = strlen ( $arg );
                 if ( $tmp_len >= $max_arg_len )
                 {
                     $max_arg_len = $tmp_len;
                 }
             }
 
-            foreach ( $cfg['cmd_arguments'] as $argument => $description )
+            foreach ( $cfg['cmd_arguments'] as $arg => $description )
             {
-                $spacing_arg = $max_arg_len  - strlen ( $argument );
-                echo '  --' . $argument . str_repeat ( ' ', $spacing_arg + 2 ) . '' . $description . PHP_EOL;
+                $spacing_arg = $max_arg_len  - strlen ( $arg );
+                echo '  --' . $arg . str_repeat ( ' ', $spacing_arg + 2 ) . '' . $description . PHP_EOL;
             }
             return false;
         }
 
-        function is_arguments_valid ( $arguments )
+        function is_argument_valid ( $args )
         {
-            foreach ( $arguments as $argument => $value )
+            foreach ( $args as $arg => $value )
             {
-                if ( ! array_key_exists ( $argument, $this->allowed_arguments ) )
+                if ( ! array_key_exists ( $arg, $this->allowed_arguments ) )
                 {
                     return false;
                 }
@@ -100,13 +100,13 @@
             return true;
         }
 
-        function getArgs ( $arguments )
+        function getArgs ( $args )
         {
             $out = array ( );
             $last_argument = null;
-            for ( $i = 0; $i < sizeof ( $arguments ); $i++)
+            for ( $i = 0; $i < sizeof ( $args ); $i++)
             {
-                if ( ( bool ) preg_match ( '/^--(.+)/', $arguments[$i], $match ) )
+                if ( ( bool ) preg_match ( '/^--(.+)/', $args[$i], $match ) )
                 {
                     $parts = explode ( '=', $match[1] );
                     $key = preg_replace ( '/[^a-z0-9-]+/', '', $parts[0] );
@@ -120,7 +120,7 @@
                     }
                     $last_argument = $key;
                 }
-                else if ( ( bool ) preg_match ( '/^-([a-zA-Z0-9]+)/', $arguments[$i], $match ) )
+                else if ( ( bool ) preg_match ( '/^-([a-zA-Z0-9]+)/', $args[$i], $match ) )
                 {
                     for ( $j = 0, $jl = strlen ( $match[1] ); $j < $jl; $j++ )
                     {
@@ -131,7 +131,7 @@
                 }
                 else if ( $last_argument !== null )
                 {
-                    $out[$last_argument] = $arguments[$i];
+                    $out[$last_argument] = $args[$i];
                 }
             }
             return $out;

@@ -1,6 +1,5 @@
 <?php
 
-namespace C:\wamp\www\flickrSyncr\include;
     /*
     |--------------------------------------------------------------------------
     |  Flickr Syncr

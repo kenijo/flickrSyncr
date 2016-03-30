@@ -90,7 +90,7 @@
         'cleanup-local'     =>  'Delete local files that are not on Flickr',
         'cleanup-flickr'    =>  'Delete Flickr files that are not on the local disk',
         'download'          =>  'Specify the folder where to download the photos from flickr ( default is current directory )',
-        'flush-flickr'      =>  'Flush all files from Flickr'
+        'flush-flickr'      =>  'Flush all files from Flickr',
         'generate-tags'     =>  'Generate tags based on the name of the photoset when uploading',
         'help'              =>  'Print Help ( this message ) and exit',
         'ignore-images'     =>  'Ignore image files',
